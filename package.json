@@ -1,6 +1,6 @@
 {
   "name": "@cli-blog/node",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official zero-dependency Node.js SDK for publishing and delivering content with the Cli Blog API.",
   "type": "module",
   "license": "MIT",
