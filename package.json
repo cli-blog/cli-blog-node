@@ -1,0 +1,66 @@
+{
+  "name": "@cli-blog/node",
+  "version": "0.1.0",
+  "description": "Official zero-dependency Node.js SDK for publishing and delivering content with the Cli Blog API.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/cli-blog/cli-blog-node#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cli-blog/cli-blog-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cli-blog/cli-blog-node/issues"
+  },
+  "keywords": [
+    "cli-blog",
+    "blog",
+    "blogging",
+    "cms",
+    "content-api",
+    "publishing",
+    "markdown",
+    "node",
+    "sdk",
+    "api-client",
+    "headless-cms",
+    "developer-tools",
+    "automation",
+    "ai-agents"
+  ],
+  "author": "Cli Blog",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist *.tgz",
+    "prepack": "bun run build",
+    "prepublishOnly": "bun run typecheck && bun run test && bun run build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test test",
+    "pack:dry": "bun run build && bun pm pack --dry-run"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
