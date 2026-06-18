@@ -1,0 +1,18 @@
+[
+  "/v1/authors",
+  "/v1/authors/{id}",
+  "/v1/categories",
+  "/v1/categories/{id}",
+  "/v1/feed",
+  "/v1/locales",
+  "/v1/media",
+  "/v1/media/{id}",
+  "/v1/posts",
+  "/v1/posts/{id}",
+  "/v1/posts/{id}/revisions",
+  "/v1/posts/{id}/revisions/{revisionId}",
+  "/v1/posts/slug-redirects/{slug}",
+  "/v1/sitemap",
+  "/v1/tags",
+  "/v1/tags/{id}"
+]

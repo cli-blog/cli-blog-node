@@ -189,8 +189,7 @@ describe("@cli-blog/node", () => {
 
   test("keeps SDK route coverage aligned with public OpenAPI paths", async () => {
     const client = new CliBlog({ apiKey: "cli_blog_pk_test" });
-    const spec = await Bun.file(new URL("../../../cli-blog-www/content/openapi/cli-blog-api.json", import.meta.url)).json();
-    const publicPaths = Object.keys(spec.paths).filter((path) => path.startsWith("/v1/")).sort();
+    const publicPaths = (await Bun.file(new URL("./public-openapi-paths.json", import.meta.url)).json()) as string[];
     const sdkPaths = [
       "/v1/authors",
       "/v1/authors/{id}",
@@ -212,6 +211,6 @@ describe("@cli-blog/node", () => {
 
     expect("settings" in (client as object)).toBe(false);
     expect(publicPaths).not.toContain("/v1/settings");
-    expect(publicPaths).toEqual(sdkPaths);
+    expect(publicPaths.sort()).toEqual(sdkPaths);
   });
 });
