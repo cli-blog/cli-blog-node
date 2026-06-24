@@ -8,21 +8,31 @@
 
 Official Node.js SDK for the Cli Blog API.
 
-[Homepage](https://cli-blog.com) · [Documentation](https://cli-blog.com/docs) · [SDK Docs](https://cli-blog.com/docs/node-package) · [API Reference](https://cli-blog.com/docs/reference/endpoints) · [GitHub](https://github.com/cli-blog/cli-blog-node)
+[Homepage](https://cli-blog.com) · [Documentation](https://cli-blog.com/docs) · [SDK Docs](https://cli-blog.com/docs/node-package) · [API Reference](https://cli-blog.com/docs/reference/endpoints) · [Agent Skill](https://github.com/cli-blog/cli-blog-skill) · [GitHub](https://github.com/cli-blog/cli-blog-node)
 
 ## What Is This?
 
-`@cli-blog/node` lets trusted JavaScript runtimes publish and deliver Cli Blog content through the public `/v1` API. Use it from servers, build jobs, CI, CLIs, and AI agent runtimes to work with posts, authors, media, categories, tags, locales, sitemap XML, feed XML, revisions, and slug redirects.
+`@cli-blog/node` lets trusted JavaScript runtimes publish and deliver [Cli Blog](https://cli-blog.com) content through the public `/v1` API. Use it from servers, build jobs, CI, CLIs, and AI agent runtimes to work with posts, authors, media, categories, tags, locales, sitemap XML, feed XML, revisions, and slug redirects.
 
 The SDK is ESM-first, requires Node.js 20 or newer, uses native `fetch`, `Blob`, and `FormData`, and has no runtime dependencies.
 
-The SDK intentionally excludes dashboard-only session, billing, admin, API-key helper, and organization settings routes.
-
 ## Install
+
+With npm:
 
 ```sh
 npm install @cli-blog/node
+```
+
+With Bun:
+
+```sh
 bun add @cli-blog/node
+```
+
+With pnpm:
+
+```sh
 pnpm add @cli-blog/node
 ```
 
@@ -50,12 +60,12 @@ const author = await blog.authors.create({
 
 const category = await blog.categories.create({
   name: "San Francisco",
-  locale: "en-US",
+  locale: "en-US", // optional; omit to use your organization's default locale.
 });
 
 const tag = await blog.tags.create({
   name: "City Notes",
-  locale: "en-US",
+  locale: "en-US", // optional.
 });
 
 const draft = await blog.posts.create({
@@ -64,6 +74,7 @@ const draft = await blog.posts.create({
   author_profile_ids: [author.id],
   category_ids: [category.id],
   tag_ids: [tag.id],
+  locale: "en-US", // optional.
   seo_title: "A developer's guide to San Francisco",
   seo_description: "A local story about parks, neighborhoods, and builder life in San Francisco.",
 });
@@ -101,18 +112,18 @@ All list methods return:
 }
 ```
 
-Use `limit` to control page size. Use `after` with `next_cursor` to fetch the next page. Use `paginate()` on posts when you want the SDK to follow cursors for you.
+Use `limit` to control page size. Use `after` with `next_cursor` to fetch the next page. Use `paginate()` on posts when you want the SDK to follow cursors for you. Unless a field is labeled required, it is optional.
 
 ### Posts
 
 | Method | Use it for | Common parameters |
 | --- | --- | --- |
-| `blog.posts.list(params)` | List posts. | `status`, `locale`, `limit`, `after`, `search`, `sort`, `direction`, `fields`, `include`, `is_featured`, author/category/tag filters. |
+| `blog.posts.list(params)` | List posts. | Optional: `status`, `locale`, `limit`, `after`, `search`, `sort`, `direction`, `fields`, `include`, `is_featured`, author/category/tag filters. |
 | `blog.posts.paginate(params)` | Iterate through all matching posts. | Same as `list`. |
-| `blog.posts.get(idOrSlug, params)` | Fetch one post by ID or slug. | `locale`, `fields`, `include`. |
-| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | `title`, `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, SEO fields. |
-| `blog.posts.update(idOrSlug, input, params)` | Update a post. | `expected_version`, fields to change, optional `locale` lookup. |
-| `blog.posts.publish(idOrSlug, input, params)` | Publish a post. | `expected_version`, optional `published_at`. |
+| `blog.posts.get(idOrSlug, params)` | Fetch one post by ID or slug. | Optional: `locale`, `fields`, `include`. |
+| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | Required: `title`. Optional: `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, SEO fields. |
+| `blog.posts.update(idOrSlug, input, params)` | Update a post. | Optional: `expected_version`, fields to change, `locale` lookup. |
+| `blog.posts.publish(idOrSlug, input, params)` | Publish a post. | Optional: `expected_version`, `published_at`, `locale`. |
 | `blog.posts.schedule(idOrSlug, scheduledAt, input, params)` | Schedule a post. | ISO datetime and optional `expected_version`. |
 | `blog.posts.delete(idOrSlug, params)` | Archive/delete a post through the API. | Optional `locale`. |
 
@@ -121,7 +132,7 @@ Post filters:
 ```ts
 const posts = await blog.posts.list({
   status: "published",
-  locale: "en-US",
+  locale: "en-US", // optional; omit to use your organization's default locale.
   limit: 20,
   search: "coffee",
   sort: "published_at",
@@ -184,7 +195,7 @@ Includes add related objects:
 | --- | --- | --- |
 | `blog.authors.list({ limit, after })` | List public author profiles. | `limit`, `after`. |
 | `blog.authors.get(idOrSlug)` | Fetch an author. | Author ID or slug. |
-| `blog.authors.create(input)` | Create an author. | `public_name`, `slug`, `bio`, `avatar_media_id`, `website_url`, `metadata`. |
+| `blog.authors.create(input)` | Create an author. | Required: `public_name`. Optional: `slug`, `bio`, `avatar_media_id`, `website_url`, `metadata`. |
 | `blog.authors.update(idOrSlug, input)` | Update an author. | Any editable author field. |
 | `blog.authors.delete(idOrSlug)` | Delete an author. | Author ID or slug. |
 
@@ -265,13 +276,13 @@ Categories and tags use the same methods. Categories can have parent categories;
 ```ts
 const category = await blog.categories.create({
   name: "San Francisco",
-  locale: "en-US",
+  locale: "en-US", // optional.
   description: "Neighborhood guides, food notes, and local stories.",
 });
 
 const tag = await blog.tags.create({
   name: "City Notes",
-  locale: "en-US",
+  locale: "en-US", // optional.
 });
 ```
 
@@ -294,7 +305,7 @@ Use `include: ["translations"]` when you need translation summaries:
 
 ```ts
 const categories = await blog.categories.list({
-  locale: "es-MX",
+  locale: "es-MX", // optional; include it when reading a specific language.
   include: ["translations"],
 });
 ```
@@ -318,18 +329,18 @@ Expected result shape:
 
 ```ts
 const revisions = await blog.posts.revisions.list("developers-guide-to-san-francisco", {
-  locale: "en-US",
+  locale: "en-US", // optional.
   limit: 10,
 });
 
 const revision = await blog.posts.revisions.get(
   "developers-guide-to-san-francisco",
   revisions.data[0]!.id,
-  { locale: "en-US" },
+  { locale: "en-US" }, // optional.
 );
 
 const redirect = await blog.posts.slugRedirects.get("old-san-francisco-guide", {
-  locale: "en-US",
+  locale: "en-US", // optional.
 });
 ```
 
@@ -357,8 +368,8 @@ Expected result shape:
 ### Sitemap And Feed
 
 ```ts
-const sitemapXml = await blog.sitemap.get({ locale: "en-US", limit: 100 });
-const feedXml = await blog.feed.get({ locale: "en-US", limit: 20 });
+const sitemapXml = await blog.sitemap.get({ locale: "en-US", limit: 100 }); // locale is optional.
+const feedXml = await blog.feed.get({ locale: "en-US", limit: 20 }); // locale is optional.
 ```
 
 Expected result shape:
@@ -441,37 +452,9 @@ export async function loader() {
 }
 ```
 
-## Advanced Request Controls
+## AI Agent Skill
 
-Most users only need `apiKey`. Two optional controls exist for advanced cases:
-
-```ts
-const blog = new CliBlog({
-  apiKey: process.env.CLI_BLOG_API_KEY!,
-
-  // Optional. Most apps should omit this.
-  // Provide a custom fetch function only in tests, instrumented runtimes,
-  // or environments where you need to wrap outgoing HTTP requests.
-  fetch: globalThis.fetch,
-});
-
-await blog.posts.list(
-  { status: "published" },
-  {
-    // Optional. Overrides the client's key for this one request.
-    // Useful when one trusted server sometimes reads with a public key
-    // and sometimes writes with a private key.
-    apiKey: process.env.CLI_BLOG_PUBLIC_KEY,
-
-    // Optional. A timeout/cancel handle for this one request.
-    // AbortSignal is built into Node 20+. AbortSignal.timeout(5000)
-    // cancels the request after 5 seconds instead of waiting forever.
-    signal: AbortSignal.timeout(5000),
-  },
-);
-```
-
-If you never need custom HTTP instrumentation, per-request key overrides, or timeouts, ignore this section.
+If you want an AI coding agent to add Cli Blog to an application, use the [Cli Blog agent skill](https://github.com/cli-blog/cli-blog-skill). It includes guidance for choosing the API, SDK, or CLI, plus framework patterns for common app stacks.
 
 ## Errors
 
