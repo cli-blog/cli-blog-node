@@ -183,7 +183,7 @@ describe("@cli-blog/node", () => {
     expect(String(requests[2]?.input)).toContain("/v1/posts/post_123/revisions/rev_123?");
     expect(String(requests[3]?.input)).toContain("/v1/posts/slug-redirects/old-slug?");
     expect(String(requests[4]?.input)).toContain("/v1/sitemap?");
-    expect(new Headers(requests[4]?.init?.headers).get("user-agent")).toBe("@cli-blog/node/0.1.1");
+    expect(new Headers(requests[4]?.init?.headers).get("user-agent")).toBe("@cli-blog/node/0.1.2");
     expect(String(requests[5]?.input)).toContain("/v1/feed?");
   });
 

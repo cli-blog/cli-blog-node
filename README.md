@@ -6,27 +6,27 @@
 
 # @cli-blog/node
 
-Official Node.js client for the Cli Blog API.
+Official Node.js SDK for the Cli Blog API.
 
 [Homepage](https://cli-blog.com) · [Documentation](https://cli-blog.com/docs) · [SDK Docs](https://cli-blog.com/docs/node-package) · [API Reference](https://cli-blog.com/docs/reference/endpoints) · [GitHub](https://github.com/cli-blog/cli-blog-node)
 
 ## What Is This?
 
-`@cli-blog/node` is the first-party SDK for publishing and delivering Cli Blog content from trusted Node.js runtimes. It covers the public `/v1` content API: posts, authors, media, categories, tags, locales, sitemap XML, feed XML, revisions, and slug redirects.
+`@cli-blog/node` lets trusted JavaScript runtimes publish and deliver Cli Blog content through the public `/v1` API. Use it from servers, build jobs, CI, CLIs, and AI agent runtimes to work with posts, authors, media, categories, tags, locales, sitemap XML, feed XML, revisions, and slug redirects.
 
-The package is ESM-first, targets Node.js 20+, uses native `fetch`, `Blob`, and `FormData`, and has no runtime dependencies.
+The SDK is ESM-first, requires Node.js 20 or newer, uses native `fetch`, `Blob`, and `FormData`, and has no runtime dependencies.
 
-The SDK intentionally excludes dashboard-only session, billing, audit, admin, API-key helper, and organization settings routes.
+The SDK intentionally excludes dashboard-only session, billing, admin, API-key helper, and organization settings routes.
 
-## Getting Started
-
-Install the package:
+## Install
 
 ```sh
 npm install @cli-blog/node
+bun add @cli-blog/node
+pnpm add @cli-blog/node
 ```
 
-Create a client:
+Create a client with an organization API key:
 
 ```ts
 import { CliBlog } from "@cli-blog/node";
@@ -38,74 +38,11 @@ const blog = new CliBlog({
 
 Use public keys for published-content reads. Use private keys only from trusted servers, CI, CLIs, and agent runtimes. Never expose private keys in browser code.
 
-## Reference
-
-Client configuration:
-
-```ts
-type CliBlogConfig = {
-  apiKey: string;
-  fetch?: typeof fetch;
-};
-```
-
-Per-request options:
-
-```ts
-type RequestOptions = {
-  apiKey?: string;
-  signal?: AbortSignal;
-};
-```
-
-`apiKey` lets one trusted server process use a different key for a single request, such as a public read key for delivery reads. `signal` is the standard `AbortSignal`; use it to cancel a request or enforce a timeout.
-
-```ts
-const posts = await blog.posts.list(
-  { status: "published" },
-  {
-    signal: AbortSignal.timeout(5000),
-  },
-);
-```
-
-Resources:
-
-| Resource | Methods |
-| --- | --- |
-| `blog.posts` | `list`, `paginate`, `get`, `create`, `update`, `publish`, `schedule`, `delete` |
-| `blog.posts.revisions` | `list`, `get` |
-| `blog.posts.slugRedirects` | `get` |
-| `blog.authors` | `list`, `get`, `create`, `update`, `delete` |
-| `blog.media` | `list`, `get`, `upload`, `update`, `delete` |
-| `blog.categories` | `list`, `get`, `create`, `update`, `delete` |
-| `blog.tags` | `list`, `get`, `create`, `update`, `delete` |
-| `blog.locales` | `list` |
-| `blog.sitemap` | `get` |
-| `blog.feed` | `get` |
-
-List responses use the API cursor shape:
-
-```ts
-type ListResponse<T> = {
-  object: "list";
-  data: T[];
-  has_more?: boolean;
-  next_cursor?: string | null;
-};
-```
-
-## Examples
+## Quick Example
 
 Create and publish a San Francisco story:
 
 ```ts
-import { CliBlog } from "@cli-blog/node";
-
-const blog = new CliBlog({
-  apiKey: process.env.CLI_BLOG_API_KEY!,
-});
-
 const author = await blog.authors.create({
   public_name: "Maya Chen",
   bio: "Field notes from San Francisco.",
@@ -117,11 +54,11 @@ const category = await blog.categories.create({
 });
 
 const tag = await blog.tags.create({
-  name: "city-notes",
+  name: "City Notes",
   locale: "en-US",
 });
 
-const post = await blog.posts.create({
+const draft = await blog.posts.create({
   title: "A developer's guide to San Francisco",
   body_markdown: "## Fog, hills, and neighborhoods\n\nA short guide to building and wandering in San Francisco.",
   author_profile_ids: [author.id],
@@ -131,52 +68,158 @@ const post = await blog.posts.create({
   seo_description: "A local story about parks, neighborhoods, and builder life in San Francisco.",
 });
 
-const published = await blog.posts.publish(post.id, {
-  expected_version: post.version,
+const published = await blog.posts.publish(draft.id, {
+  expected_version: draft.version,
 });
 ```
 
-Expected shape:
+Expected result shape:
 
 ```ts
-console.log(published.id); // "post_..."
-console.log(published.status); // "published"
-console.log(published.slug); // "developers-guide-to-san-francisco"
+{
+  id: "post_...",
+  object: "post",
+  locale: "en-US",
+  status: "published",
+  title: "A developer's guide to San Francisco",
+  slug: "developers-guide-to-san-francisco",
+  version: 2,
+  published_at: "2026-06-18T16:00:00.000Z",
+}
 ```
 
-Read published posts:
+## Resources
+
+All list methods return:
+
+```ts
+{
+  object: "list",
+  data: [],
+  has_more: false,
+  next_cursor: null,
+}
+```
+
+Use `limit` to control page size. Use `after` with `next_cursor` to fetch the next page. Use `paginate()` on posts when you want the SDK to follow cursors for you.
+
+### Posts
+
+| Method | Use it for | Common parameters |
+| --- | --- | --- |
+| `blog.posts.list(params)` | List posts. | `status`, `locale`, `limit`, `after`, `search`, `sort`, `direction`, `fields`, `include`, `is_featured`, author/category/tag filters. |
+| `blog.posts.paginate(params)` | Iterate through all matching posts. | Same as `list`. |
+| `blog.posts.get(idOrSlug, params)` | Fetch one post by ID or slug. | `locale`, `fields`, `include`. |
+| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | `title`, `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, SEO fields. |
+| `blog.posts.update(idOrSlug, input, params)` | Update a post. | `expected_version`, fields to change, optional `locale` lookup. |
+| `blog.posts.publish(idOrSlug, input, params)` | Publish a post. | `expected_version`, optional `published_at`. |
+| `blog.posts.schedule(idOrSlug, scheduledAt, input, params)` | Schedule a post. | ISO datetime and optional `expected_version`. |
+| `blog.posts.delete(idOrSlug, params)` | Archive/delete a post through the API. | Optional `locale`. |
+
+Post filters:
 
 ```ts
 const posts = await blog.posts.list({
   status: "published",
-  fields: ["summary", "seo"],
-  include: ["authors", "media"],
-  limit: 20,
   locale: "en-US",
+  limit: 20,
+  search: "coffee",
+  sort: "published_at",
+  direction: "desc",
+  fields: ["summary", "seo"],
+  include: ["authors", "categories", "tags", "media"],
+  category_slug: "san-francisco",
+  tag_slug: ["city-notes", "parks"],
 });
+```
 
-for (const post of posts.data) {
-  console.log(post.title, post.slug);
+Expected result shape:
+
+```ts
+{
+  object: "list",
+  data: [
+    {
+      id: "post_123",
+      object: "post",
+      title: "A developer's guide to San Francisco",
+      slug: "developers-guide-to-san-francisco",
+      status: "published",
+      locale: "en-US",
+      seo_title: "A developer's guide to San Francisco",
+      authors: [{ id: "author_123", object: "author", public_name: "Maya Chen" }],
+      categories: [{ id: "term_123", object: "taxonomy_term", name: "San Francisco" }],
+      tags: [{ id: "term_456", object: "taxonomy_term", name: "City Notes" }],
+      media: [{ id: "media_123", object: "media_asset", url: "https://..." }],
+    },
+  ],
+  has_more: false,
+  next_cursor: null,
 }
 ```
 
-Expected shape:
+Field groups control which post fields are returned:
+
+| Field group | Use it when you need |
+| --- | --- |
+| `summary` | IDs, title, slug, locale, status, excerpt, timestamps. |
+| `content` | Markdown body and content fields. |
+| `seo` | SEO, robots, Open Graph, Twitter, and schema fields. |
+| `workflow` | Editorial state such as scheduling and version fields. |
+| `metadata` | Custom metadata. |
+
+Includes add related objects:
+
+| Include | Adds |
+| --- | --- |
+| `authors` | Author profile objects. |
+| `categories` | Category term objects. |
+| `tags` | Tag term objects. |
+| `media` | Referenced media asset objects. |
+| `translations` | Linked translation summaries. |
+
+### Authors
+
+| Method | Use it for | Common parameters |
+| --- | --- | --- |
+| `blog.authors.list({ limit, after })` | List public author profiles. | `limit`, `after`. |
+| `blog.authors.get(idOrSlug)` | Fetch an author. | Author ID or slug. |
+| `blog.authors.create(input)` | Create an author. | `public_name`, `slug`, `bio`, `avatar_media_id`, `website_url`, `metadata`. |
+| `blog.authors.update(idOrSlug, input)` | Update an author. | Any editable author field. |
+| `blog.authors.delete(idOrSlug)` | Delete an author. | Author ID or slug. |
 
 ```ts
-console.log(posts.object); // "list"
-console.log(posts.data[0]?.object); // "post"
-console.log(posts.data[0]?.authors?.[0]?.object); // "author" when include contains "authors"
+const author = await blog.authors.create({
+  public_name: "Maya Chen",
+  bio: "Field notes from San Francisco.",
+  website_url: "https://example.com/authors/maya-chen",
+});
 ```
 
-Paginate through posts:
+Expected result shape:
 
 ```ts
-for await (const post of blog.posts.paginate({ status: "published", limit: 50 })) {
-  console.log(post.id);
+{
+  id: "author_123",
+  object: "author",
+  public_name: "Maya Chen",
+  slug: "maya-chen",
+  bio: "Field notes from San Francisco.",
+  avatar_media_id: null,
+  avatar_url: null,
+  website_url: "https://example.com/authors/maya-chen",
 }
 ```
 
-Upload media:
+### Media
+
+| Method | Use it for | Common parameters |
+| --- | --- | --- |
+| `blog.media.list({ limit, after })` | List uploaded media assets. | `limit`, `after`. |
+| `blog.media.get(id)` | Fetch one media asset. | Media ID. |
+| `blog.media.upload(input)` | Upload a file. | `file`, `filename`, `alt_text`, `caption`, `metadata`. |
+| `blog.media.update(id, input)` | Update media metadata. | `alt_text`, `caption`, `metadata`. |
+| `blog.media.delete(id)` | Delete a media asset. | Media ID. |
 
 ```ts
 import { readFile } from "node:fs/promises";
@@ -188,68 +231,247 @@ const media = await blog.media.upload({
   filename: "bay-walk.png",
   alt_text: "Morning light over San Francisco Bay",
   caption: "A local image for a San Francisco story.",
-  metadata: { source: "field-notes" },
-});
-
-await blog.posts.update("developers-guide-to-san-francisco", {
-  featured_media_asset_id: media.id,
 });
 ```
 
-Expected shape:
+Expected result shape:
 
 ```ts
-console.log(media.object); // "media_asset"
-console.log(media.url); // generated media URL
+{
+  id: "media_123",
+  object: "media_asset",
+  url: "https://cdn.example.com/media/bay-walk.png",
+  original_filename: "bay-walk.png",
+  alt_text: "Morning light over San Francisco Bay",
+  caption: "A local image for a San Francisco story.",
+  mime_type: "image/png",
+  width: 1600,
+  height: 900,
+}
 ```
 
-Work with localization and taxonomy:
+### Categories And Tags
+
+Categories and tags use the same methods. Categories can have parent categories; tags are flat labels.
+
+| Method | Use it for | Common parameters |
+| --- | --- | --- |
+| `blog.categories.list(params)` / `blog.tags.list(params)` | List taxonomy terms. | `locale`, `include`, `limit`, `after`. |
+| `blog.categories.get(idOrSlug, params)` / `blog.tags.get(idOrSlug, params)` | Fetch a term. | `locale`, `include`. |
+| `blog.categories.create(input)` / `blog.tags.create(input)` | Create a term. | `name`, `slug`, `locale`, `description`, SEO fields, `translation_of_id`. |
+| `blog.categories.update(idOrSlug, input, params)` / `blog.tags.update(idOrSlug, input, params)` | Update a term. | Any editable term field, optional `locale`. |
+| `blog.categories.delete(idOrSlug, params)` / `blog.tags.delete(idOrSlug, params)` | Delete a term. | Optional `locale`. |
 
 ```ts
-const locales = await blog.locales.list();
+const category = await blog.categories.create({
+  name: "San Francisco",
+  locale: "en-US",
+  description: "Neighborhood guides, food notes, and local stories.",
+});
 
-const spanishCategory = await blog.categories.create({
+const tag = await blog.tags.create({
+  name: "City Notes",
+  locale: "en-US",
+});
+```
+
+Expected result shape:
+
+```ts
+{
+  id: "term_123",
+  object: "taxonomy_term",
+  taxonomy_type: "category",
+  locale: "en-US",
   name: "San Francisco",
   slug: "san-francisco",
-  locale: "es-MX",
-});
+  description: "Neighborhood guides, food notes, and local stories.",
+  translations: undefined,
+}
+```
 
-const tags = await blog.tags.list({
+Use `include: ["translations"]` when you need translation summaries:
+
+```ts
+const categories = await blog.categories.list({
   locale: "es-MX",
   include: ["translations"],
 });
 ```
 
-Expected shape:
+### Locales
 
 ```ts
-console.log(locales.map((locale) => locale.tag)); // ["en-US", "es-MX", ...]
-console.log(spanishCategory.object); // "taxonomy_term"
-console.log(tags.object); // "list"
+const locales = await blog.locales.list();
 ```
 
-Fetch revisions, redirects, sitemap, and feed:
+Expected result shape:
 
 ```ts
-const revisions = await blog.posts.revisions.list("developers-guide-to-san-francisco");
-const revision = await blog.posts.revisions.get("developers-guide-to-san-francisco", revisions.data[0]!.id);
+[
+  { tag: "en-US", name: "English (United States)", language: "English", region: "United States" },
+  { tag: "es-MX", name: "Spanish (Mexico)", language: "Spanish", region: "Mexico" },
+]
+```
+
+### Revisions And Redirects
+
+```ts
+const revisions = await blog.posts.revisions.list("developers-guide-to-san-francisco", {
+  locale: "en-US",
+  limit: 10,
+});
+
+const revision = await blog.posts.revisions.get(
+  "developers-guide-to-san-francisco",
+  revisions.data[0]!.id,
+  { locale: "en-US" },
+);
 
 const redirect = await blog.posts.slugRedirects.get("old-san-francisco-guide", {
   locale: "en-US",
 });
+```
 
+Expected result shape:
+
+```ts
+{
+  revision: {
+    id: "rev_123",
+    object: "post_revision",
+    parent_post_id: "post_123",
+    title: "A developer's guide to San Francisco",
+    version: 1,
+    body_markdown: "## Fog, hills...",
+  },
+  redirect: {
+    object: "slug_redirect",
+    from_slug: "old-san-francisco-guide",
+    to_slug: "developers-guide-to-san-francisco",
+    status_code: 301,
+  },
+}
+```
+
+### Sitemap And Feed
+
+```ts
 const sitemapXml = await blog.sitemap.get({ locale: "en-US", limit: 100 });
 const feedXml = await blog.feed.get({ locale: "en-US", limit: 20 });
 ```
 
-Expected shape:
+Expected result shape:
 
 ```ts
-console.log(revision.object); // "post_revision"
-console.log(redirect.status_code); // 301
-console.log(sitemapXml.startsWith("<?xml")); // true
-console.log(feedXml.includes("<rss")); // true
+sitemapXml.startsWith("<?xml"); // true
+feedXml.includes("<rss"); // true
 ```
+
+## Framework Examples
+
+### Next.js App Router
+
+Use the SDK in server components, route handlers, or server actions. Do not import it into client components with a private key.
+
+```ts
+// app/blog/page.tsx
+import { CliBlog } from "@cli-blog/node";
+
+const blog = new CliBlog({ apiKey: process.env.CLI_BLOG_PUBLIC_KEY! });
+
+export default async function BlogPage() {
+  const posts = await blog.posts.list({
+    status: "published",
+    fields: ["summary", "seo"],
+    include: ["authors"],
+    locale: "en-US",
+  });
+
+  return posts.data.map((post) => <article key={post.id}>{post.title}</article>);
+}
+```
+
+### Next.js Route Handler
+
+```ts
+// app/api/blog/posts/route.ts
+import { CliBlog } from "@cli-blog/node";
+
+const blog = new CliBlog({ apiKey: process.env.CLI_BLOG_PUBLIC_KEY! });
+
+export async function GET() {
+  const posts = await blog.posts.list({ status: "published", limit: 10 });
+  return Response.json(posts);
+}
+```
+
+### Astro
+
+```astro
+---
+import { CliBlog } from "@cli-blog/node";
+
+const blog = new CliBlog({ apiKey: import.meta.env.CLI_BLOG_PUBLIC_KEY });
+const posts = await blog.posts.list({ status: "published", fields: ["summary"] });
+---
+
+{posts.data.map((post) => <article><h2>{post.title}</h2></article>)}
+```
+
+### React Or Vite
+
+React apps run in the browser, so do not put private keys there. Create a small server route with the SDK, then call that route from React.
+
+```tsx
+// React component
+const response = await fetch("/api/blog/posts");
+const posts = await response.json();
+```
+
+### Remix Or React Router
+
+```ts
+// app/routes/blog._index.tsx
+import { CliBlog } from "@cli-blog/node";
+
+export async function loader() {
+  const blog = new CliBlog({ apiKey: process.env.CLI_BLOG_PUBLIC_KEY! });
+  return blog.posts.list({ status: "published", fields: ["summary"] });
+}
+```
+
+## Advanced Request Controls
+
+Most users only need `apiKey`. Two optional controls exist for advanced cases:
+
+```ts
+const blog = new CliBlog({
+  apiKey: process.env.CLI_BLOG_API_KEY!,
+
+  // Optional. Most apps should omit this.
+  // Provide a custom fetch function only in tests, instrumented runtimes,
+  // or environments where you need to wrap outgoing HTTP requests.
+  fetch: globalThis.fetch,
+});
+
+await blog.posts.list(
+  { status: "published" },
+  {
+    // Optional. Overrides the client's key for this one request.
+    // Useful when one trusted server sometimes reads with a public key
+    // and sometimes writes with a private key.
+    apiKey: process.env.CLI_BLOG_PUBLIC_KEY,
+
+    // Optional. A timeout/cancel handle for this one request.
+    // AbortSignal is built into Node 20+. AbortSignal.timeout(5000)
+    // cancels the request after 5 seconds instead of waiting forever.
+    signal: AbortSignal.timeout(5000),
+  },
+);
+```
+
+If you never need custom HTTP instrumentation, per-request key overrides, or timeouts, ignore this section.
 
 ## Errors
 
@@ -274,17 +496,6 @@ try {
 }
 ```
 
-`CliBlogError` fields:
-
-| Field | Meaning |
-| --- | --- |
-| `message` | Human-readable error message. |
-| `status` | HTTP status when the API responded. |
-| `code` | API error code such as `forbidden`, `not_found`, or `validation_failed`. |
-| `field` | Request field related to the error when available. |
-| `requestId` | API request ID from `x-request-id`, useful for support/debugging. |
-| `response` | Original `Response` object when available. |
-
 Common cases:
 
 | Status / code | When to expect it | What to do |
@@ -297,22 +508,7 @@ Common cases:
 | `429` | Rate or plan limit reached. | Back off or upgrade the organization plan. |
 | `5xx` | Temporary API or upstream failure. | Retry later; safe requests are retried automatically by the SDK. |
 
-The SDK retries safe requests on transient statuses such as `408`, `409`, `425`, `429`, and `5xx`. Mutating requests are not retried automatically.
-
-## Publishing A New Version
-
-This repository publishes to npm from GitHub releases after `NPM_TOKEN` is configured in repository Actions secrets.
-
-For a patch release:
-
-```sh
-npm version patch
-git push origin main --follow-tags
-```
-
-Then create a GitHub release for the new tag, such as `v0.1.1`. The publish workflow verifies that the release tag matches `package.json`, runs typecheck/tests/build, and publishes with npm provenance.
-
-If the CLI needs this new SDK version, publish `@cli-blog/node` first, then update `@cli-blog/cli` to depend on the new version.
+Safe read requests are retried automatically on transient statuses such as `408`, `409`, `425`, `429`, and `5xx`. Mutating requests are not retried automatically.
 
 ## Security
 
