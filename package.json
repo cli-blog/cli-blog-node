@@ -1,6 +1,6 @@
 {
   "name": "@cli-blog/node",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Official zero-dependency Node.js SDK for publishing and delivering content with the Cli Blog API.",
   "type": "module",
   "license": "MIT",
@@ -44,10 +44,14 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "clean": "rm -rf dist *.tgz",
+    "build": "bun run clean:dist && tsc -p tsconfig.json",
+    "clean": "bun run clean:dist && rm -f *.tgz",
+    "clean:dist": "rm -rf dist",
+    "contract:check": "node scripts/sync-openapi-contract.mjs --check",
+    "contract:sync": "node scripts/sync-openapi-contract.mjs",
     "prepack": "bun run build",
-    "prepublishOnly": "bun run typecheck && bun run test && bun run build",
+    "prepublishOnly": "bun run typecheck && bun run test && bun run build && bun run test:consumers",
+    "test:consumers": "node test/fixtures/javascript-esm/index.mjs && tsc -p test/fixtures/typescript/tsconfig.json --noEmit",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "bun test test",
     "pack:dry": "bun run build && bun pm pack --dry-run"

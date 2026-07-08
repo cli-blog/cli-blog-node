@@ -3,6 +3,8 @@ import type { ErrorBody } from "./types.js";
 export type CliBlogErrorOptions = {
   status?: number | undefined;
   code?: string | undefined;
+  param?: string | undefined;
+  /** @deprecated Use `param`. */
   field?: string | undefined;
   requestId?: string | undefined;
   response?: Response | undefined;
@@ -12,6 +14,8 @@ export type CliBlogErrorOptions = {
 export class CliBlogError extends Error {
   readonly status: number | undefined;
   readonly code: string | undefined;
+  readonly param: string | undefined;
+  /** @deprecated Use `param`. */
   readonly field: string | undefined;
   readonly requestId: string | undefined;
   readonly response: Response | undefined;
@@ -21,7 +25,8 @@ export class CliBlogError extends Error {
     this.name = "CliBlogError";
     this.status = options.status;
     this.code = options.code;
-    this.field = options.field;
+    this.param = options.param ?? options.field;
+    this.field = this.param;
     this.requestId = options.requestId;
     this.response = options.response;
   }
@@ -48,7 +53,7 @@ export const errorFromResponse = async (response: Response): Promise<CliBlogErro
 
   return new CliBlogError(detail?.message ?? `Cli Blog API request failed with ${response.status}`, {
     code: detail?.code,
-    field: detail?.field,
+    param: detail?.param ?? detail?.field,
     requestId,
     response,
     status: response.status,

@@ -38,13 +38,18 @@ pnpm add @cli-blog/node
 
 Create a client with an organization API key:
 
-```ts
+```js
 import { CliBlog } from "@cli-blog/node";
 
+const apiKey = process.env.CLI_BLOG_API_KEY;
+if (!apiKey) throw new Error("CLI_BLOG_API_KEY is required");
+
 const blog = new CliBlog({
-  apiKey: process.env.CLI_BLOG_API_KEY!,
+  apiKey,
 });
 ```
+
+The same import and runtime API work in plain JavaScript ESM and TypeScript. TypeScript projects receive declarations and inference from this package; no separate types package is required.
 
 Use public keys for published-content reads. Use private keys only from trusted servers, CI, CLIs, and agent runtimes. Never expose private keys in browser code.
 
@@ -112,16 +117,18 @@ All list methods return:
 }
 ```
 
-Use `limit` to control page size. Use `after` with `next_cursor` to fetch the next page. Use `paginate()` on posts when you want the SDK to follow cursors for you. Unless a field is labeled required, it is optional.
+Use `limit` to control page size. Use `after` with `next_cursor` to fetch the next page. Cursor-list resources also expose `paginate()` when you want the SDK to follow cursors for you. Unless a field is labeled required, it is optional.
+
+For exact numbered pages, pass `page` and optional `per_page` to `list()`. Numbered list responses include `page`, `per_page`, `total_items`, and `total_pages` in addition to `has_more` and `next_cursor`. Do not combine `page`/`per_page` with `after`/`limit`; use cursor controls with `paginate()`.
 
 ### Posts
 
 | Method | Use it for | Common parameters |
 | --- | --- | --- |
-| `blog.posts.list(params)` | List posts. | Optional: `status`, `locale`, `limit`, `after`, `search`, `sort`, `direction`, `fields`, `include`, `is_featured`, author/category/tag filters. |
-| `blog.posts.paginate(params)` | Iterate through all matching posts. | Same as `list`. |
+| `blog.posts.list(params)` | List posts. | Optional: `status`, `locale`, `limit`, `after`, `page`, `per_page`, `search`, `sort`, `direction`, `fields`, `include`, `is_featured`, author/category/tag filters. |
+| `blog.posts.paginate(params)` | Iterate through all matching posts using cursors. | Same filters as `list`, with cursor controls only. |
 | `blog.posts.get(idOrSlug, params)` | Fetch one post by ID or slug. | Optional: `locale`, `fields`, `include`. |
-| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | Required: `title`. Optional: `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, SEO fields. |
+| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | Required: `title`. Optional: `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, `media_asset_ids`, SEO fields. |
 | `blog.posts.update(idOrSlug, input, params)` | Update a post. | Optional: `expected_version`, fields to change, `locale` lookup. |
 | `blog.posts.publish(idOrSlug, input, params)` | Publish a post. | Optional: `expected_version`, `published_at`, `locale`. |
 | `blog.posts.schedule(idOrSlug, scheduledAt, input, params)` | Schedule a post. | ISO datetime and optional `expected_version`. |
@@ -140,8 +147,23 @@ const posts = await blog.posts.list({
   fields: ["summary", "seo"],
   include: ["authors", "categories", "tags", "media"],
   category_slug: "san-francisco",
+  category_match: "all",
   tag_slug: ["city-notes", "parks"],
+  exclude_tag_slug: ["internal"],
 });
+```
+
+Numbered pagination:
+
+```ts
+const page = await blog.posts.list({
+  page: 2,
+  per_page: 20,
+  status: "published",
+  fields: ["summary", "seo"],
+});
+
+console.log(page.total_items, page.total_pages);
 ```
 
 Expected result shape:
@@ -193,7 +215,7 @@ Includes add related objects:
 
 | Method | Use it for | Common parameters |
 | --- | --- | --- |
-| `blog.authors.list({ limit, after })` | List public author profiles. | `limit`, `after`. |
+| `blog.authors.list(params)` / `blog.authors.paginate(params)` | List or iterate through public author profiles. | `limit`, `after`, or `page`, `per_page` for `list()`. |
 | `blog.authors.get(idOrSlug)` | Fetch an author. | Author ID or slug. |
 | `blog.authors.create(input)` | Create an author. | Required: `public_name`. Optional: `slug`, `bio`, `avatar_media_id`, `website_url`, `metadata`. |
 | `blog.authors.update(idOrSlug, input)` | Update an author. | Any editable author field. |
@@ -226,7 +248,7 @@ Expected result shape:
 
 | Method | Use it for | Common parameters |
 | --- | --- | --- |
-| `blog.media.list({ limit, after })` | List uploaded media assets. | `limit`, `after`. |
+| `blog.media.list(params)` / `blog.media.paginate(params)` | List or iterate through uploaded media assets. | `limit`, `after`, or `page`, `per_page` for `list()`. |
 | `blog.media.get(id)` | Fetch one media asset. | Media ID. |
 | `blog.media.upload(input)` | Upload a file. | `file`, `filename`, `alt_text`, `caption`, `metadata`. |
 | `blog.media.update(id, input)` | Update media metadata. | `alt_text`, `caption`, `metadata`. |
@@ -267,7 +289,7 @@ Categories and tags use the same methods. Categories can have parent categories;
 
 | Method | Use it for | Common parameters |
 | --- | --- | --- |
-| `blog.categories.list(params)` / `blog.tags.list(params)` | List taxonomy terms. | `locale`, `include`, `limit`, `after`. |
+| `blog.categories.list(params)` / `blog.tags.list(params)` | List taxonomy terms. Use `paginate(params)` to iterate through cursor pages. | `locale`, `include`, `limit`, `after`, or `page`, `per_page` for `list()`. |
 | `blog.categories.get(idOrSlug, params)` / `blog.tags.get(idOrSlug, params)` | Fetch a term. | `locale`, `include`. |
 | `blog.categories.create(input)` / `blog.tags.create(input)` | Create a term. | `name`, `slug`, `locale`, `description`, SEO fields, `translation_of_id`. |
 | `blog.categories.update(idOrSlug, input, params)` / `blog.tags.update(idOrSlug, input, params)` | Update a term. | Any editable term field, optional `locale`. |
@@ -469,7 +491,7 @@ try {
   if (error instanceof CliBlogError) {
     console.error({
       code: error.code,
-      field: error.field,
+      param: error.param,
       message: error.message,
       requestId: error.requestId,
       status: error.status,
@@ -488,10 +510,10 @@ Common cases:
 | `403` / `forbidden` | The key type or scopes do not allow the action. | Use a private key for trusted writes and the right permissions. |
 | `404` / `not_found` | The resource ID or locale-scoped slug does not exist. | Check the ID, slug, and locale. |
 | `409` | Optimistic concurrency failed, usually from stale `expected_version`. | Fetch the latest post and retry with the current version. |
-| `429` | Rate or plan limit reached. | Back off or upgrade the organization plan. |
+| `429` | Rate or plan limit reached. | Honor `Retry-After` when present; otherwise inspect the plan limit and usage state. |
 | `5xx` | Temporary API or upstream failure. | Retry later; safe requests are retried automatically by the SDK. |
 
-Safe read requests are retried automatically on transient statuses such as `408`, `409`, `425`, `429`, and `5xx`. Mutating requests are not retried automatically.
+Safe read requests are retried automatically for network failures and transient statuses such as `408`, `425`, and selected `5xx` responses. A `429` is retried only when the API supplies `Retry-After`. Conflicts and hard plan limits are returned immediately. Mutating requests are not retried automatically.
 
 ## Security
 

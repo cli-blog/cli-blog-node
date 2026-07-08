@@ -1,0 +1,4391 @@
+{
+  "contract_hash": "9b945a8c20756b2464539b2882cd18b8cc5cdf3b2c5406d0fa924864c495dc57",
+  "generated_from": "Cli Blog public OpenAPI",
+  "operations": [
+    {
+      "key_type": "private",
+      "method": "DELETE",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "c37c628db19094e39799a59f765537a05169bb6df82899eda3a9953dc6a47e75"
+        }
+      ],
+      "path": "/v1/authors/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "deleted",
+                "id"
+              ],
+              "required": [
+                "deleted",
+                "id"
+              ],
+              "schema_hash": "7d4bc981780e96f3d3ec21c9a7ed796a60485a80030ec60725e89cf35611340f"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "DELETE",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/categories/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "deleted",
+                "id"
+              ],
+              "required": [
+                "deleted",
+                "id"
+              ],
+              "schema_hash": "7d4bc981780e96f3d3ec21c9a7ed796a60485a80030ec60725e89cf35611340f"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "DELETE",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/media/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "deleted",
+                "id"
+              ],
+              "required": [
+                "deleted",
+                "id"
+              ],
+              "schema_hash": "7d4bc981780e96f3d3ec21c9a7ed796a60485a80030ec60725e89cf35611340f"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "DELETE",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "45a70f4c7ed63936495b15594a5376129eb768e312c6c4d378ab3d356f6ec405"
+        }
+      ],
+      "path": "/v1/posts/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "authors",
+                "body_markdown",
+                "canonical_url",
+                "categories",
+                "content_type",
+                "created_at",
+                "excerpt",
+                "featured_media_asset_id",
+                "focus_keyphrase",
+                "id",
+                "is_featured",
+                "locale",
+                "media",
+                "media_asset_ids",
+                "metadata",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "published_at",
+                "robots_follow",
+                "robots_index",
+                "scheduled_at",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "status",
+                "tags",
+                "title",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at",
+                "version"
+              ],
+              "required": [
+                "content_type",
+                "id",
+                "locale",
+                "object",
+                "organization_id"
+              ],
+              "schema_hash": "9da567b50268216bf77a3f77d32739cb06d7271ae74e17eb82b8742b15dce7b0"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "DELETE",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/tags/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "deleted",
+                "id"
+              ],
+              "required": [
+                "deleted",
+                "id"
+              ],
+              "schema_hash": "7d4bc981780e96f3d3ec21c9a7ed796a60485a80030ec60725e89cf35611340f"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "after",
+          "required": false,
+          "schema_hash": "580478d7b68e71eb5084a0e0eeeeb416a52261c98c18d1f180eab50a2cf8678a"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "f651b44ab833481801dc99f341533aef00dabc4b819e48a506e41ab2fba20719"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema_hash": "3750a500e3b337a68cf9c3baa9eb149aa58c3df4e87cf70a5c5d92a0043875de"
+        },
+        {
+          "in": "query",
+          "name": "per_page",
+          "required": false,
+          "schema_hash": "d3e05db909e79d5d4d5f49c59bba5b3a19a5f70f6814a58798e3dc8a45576b6b"
+        }
+      ],
+      "path": "/v1/authors",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object",
+                "page",
+                "per_page",
+                "total_items",
+                "total_pages"
+              ],
+              "required": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object"
+              ],
+              "schema_hash": "206dc63f41c931d946eea9f16f16db0e0a8f0c8b2c169dec85e8f48e7828549a"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "c37c628db19094e39799a59f765537a05169bb6df82899eda3a9953dc6a47e75"
+        }
+      ],
+      "path": "/v1/authors/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "avatar_media_id",
+                "avatar_url",
+                "bio",
+                "created_at",
+                "id",
+                "metadata",
+                "object",
+                "organization_id",
+                "public_name",
+                "slug",
+                "updated_at",
+                "website_url"
+              ],
+              "required": [
+                "avatar_media_id",
+                "avatar_url",
+                "bio",
+                "created_at",
+                "id",
+                "metadata",
+                "object",
+                "organization_id",
+                "public_name",
+                "slug",
+                "updated_at",
+                "website_url"
+              ],
+              "schema_hash": "df63c3dbae3796584bccedb5897126e0b20583f8ec73dc053f15c3655884e239"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "after",
+          "required": false,
+          "schema_hash": "8c6d23d9c24aa88f01632ad8081bb4e0f6b3ef40dac309860c567769f58de76f"
+        },
+        {
+          "in": "query",
+          "name": "include",
+          "required": false,
+          "schema_hash": "5de67946b3bf833f3a42a776e66f78ad7d27f106c463174892d0b046feb4b151"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "9ba66424260d5ac770b4a123d936fe198ce30216c50f54d1f83623206326e297"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "aeda0e51a6cd6496d45a9bf63837a44ff39916e263605447f877c9e69431ccef"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema_hash": "3750a500e3b337a68cf9c3baa9eb149aa58c3df4e87cf70a5c5d92a0043875de"
+        },
+        {
+          "in": "query",
+          "name": "per_page",
+          "required": false,
+          "schema_hash": "d3e05db909e79d5d4d5f49c59bba5b3a19a5f70f6814a58798e3dc8a45576b6b"
+        }
+      ],
+      "path": "/v1/categories",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object",
+                "page",
+                "per_page",
+                "total_items",
+                "total_pages"
+              ],
+              "required": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object"
+              ],
+              "schema_hash": "73384e0c6cdc2cc2ab5c21c49bae1e63016faf22533e265698c8a3c2560869db"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "6cd7321f906df6617aa451cb677b892003846dbda660a84040f2fae3599fbb59"
+        },
+        {
+          "in": "query",
+          "name": "include",
+          "required": false,
+          "schema_hash": "5de67946b3bf833f3a42a776e66f78ad7d27f106c463174892d0b046feb4b151"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "8f86fc315234416b35b6796701db08b7b4c39fd1018b4eeb832c3edafef29956"
+        }
+      ],
+      "path": "/v1/categories/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "required": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "schema_hash": "e3bba0aba66599537425483be374fffe0bdba48bab1536429b17be429d6ac905"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "2a90918f935565f82958d7dcac40accc75b65a5ef19408eaf3d51bba11806c99"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "380a2c7ac9a05bef8deeb57f644095e42c0c552102f13e09ef446bb1698a176b"
+        }
+      ],
+      "path": "/v1/feed",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "text/plain",
+              "properties": [],
+              "required": [],
+              "schema_hash": "cca98c9523278f58ea0e447db7d0bb09331b5b95ace2bb678d92cd82dadbd90c"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "none",
+      "method": "GET",
+      "parameters": [],
+      "path": "/v1/locales",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "object"
+              ],
+              "required": [
+                "data",
+                "object"
+              ],
+              "schema_hash": "51cd3f1a622ea4c3960029e12d16ab24e62e242914212fc503e865d6bb6f3b05"
+            }
+          ],
+          "status": "200"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "after",
+          "required": false,
+          "schema_hash": "3fb13b3e5a818a8e16fdb10a131625775970e8e4f5a48b9e01de5aac4c4d6930"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "1182379ce397678f36f75a72a1f0c390d58aae956589360ddc720ddb4178b755"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema_hash": "3750a500e3b337a68cf9c3baa9eb149aa58c3df4e87cf70a5c5d92a0043875de"
+        },
+        {
+          "in": "query",
+          "name": "per_page",
+          "required": false,
+          "schema_hash": "d3e05db909e79d5d4d5f49c59bba5b3a19a5f70f6814a58798e3dc8a45576b6b"
+        }
+      ],
+      "path": "/v1/media",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object",
+                "page",
+                "per_page",
+                "total_items",
+                "total_pages"
+              ],
+              "required": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object"
+              ],
+              "schema_hash": "0d8ee959709d2b70065d0f4a8aabd1cc6d3503a047d9ac14f7ed96bd0a3c7a9a"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/media/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "alt_text",
+                "caption",
+                "created_at",
+                "height",
+                "id",
+                "metadata",
+                "mime_type",
+                "object",
+                "organization_id",
+                "original_filename",
+                "size_bytes",
+                "updated_at",
+                "url",
+                "width"
+              ],
+              "required": [
+                "alt_text",
+                "caption",
+                "created_at",
+                "height",
+                "id",
+                "metadata",
+                "mime_type",
+                "object",
+                "organization_id",
+                "original_filename",
+                "size_bytes",
+                "updated_at",
+                "url",
+                "width"
+              ],
+              "schema_hash": "a91821fd8c19fb1a188fd320513c856e06bfe7b9d6c12ca0b5a01d0769b37f37"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "after",
+          "required": false,
+          "schema_hash": "105a838f0fbe3b0b8dcd2028391769e7feb7b9f8929dc24d35cc6c6b30962505"
+        },
+        {
+          "in": "query",
+          "name": "author_id",
+          "required": false,
+          "schema_hash": "a1746811391df671da26e7e36dba87f8abd8999a41abfd96f786d12f6ba07919"
+        },
+        {
+          "in": "query",
+          "name": "author_match",
+          "required": false,
+          "schema_hash": "0598fb4b19fb72990d246837006ee345ba92061bae4a3cee3b9291ab18b427d7"
+        },
+        {
+          "in": "query",
+          "name": "author_slug",
+          "required": false,
+          "schema_hash": "36944764754a75ded7b8911fe2e45dbfdf9eb3d9b654ddf969760780b919f57d"
+        },
+        {
+          "in": "query",
+          "name": "category_id",
+          "required": false,
+          "schema_hash": "f4475089ad5a8d636d8a4acf16a5e7d367d655fafd3717f3a0163c647dea1269"
+        },
+        {
+          "in": "query",
+          "name": "category_match",
+          "required": false,
+          "schema_hash": "0598fb4b19fb72990d246837006ee345ba92061bae4a3cee3b9291ab18b427d7"
+        },
+        {
+          "in": "query",
+          "name": "category_slug",
+          "required": false,
+          "schema_hash": "a6738da7c99d3055434c2d088832adc5c6164feca9b892d035921a34ef286fb0"
+        },
+        {
+          "in": "query",
+          "name": "direction",
+          "required": false,
+          "schema_hash": "9da541a773f8c33335ae04fa03a4cca6ceabf3a6d2a9ce97535fe2128188c888"
+        },
+        {
+          "in": "query",
+          "name": "exclude_author_id",
+          "required": false,
+          "schema_hash": "e1317c5342211bf2b2e8aa5f07e910d1896609cb7928a871f95b09ade1225108"
+        },
+        {
+          "in": "query",
+          "name": "exclude_author_slug",
+          "required": false,
+          "schema_hash": "8965003d7d9d57c93bad0734d30748c2c1da735661d8b651e9cf0b1ad328f92b"
+        },
+        {
+          "in": "query",
+          "name": "exclude_category_id",
+          "required": false,
+          "schema_hash": "62c438dbdb63f7888f843adc01e3b0dc86ad05ef0c39f8a37f95e943b68994d2"
+        },
+        {
+          "in": "query",
+          "name": "exclude_category_slug",
+          "required": false,
+          "schema_hash": "83055ad25774b974bcab527223fc5daaf7b03a30984f3ed56e203d62b2eaf191"
+        },
+        {
+          "in": "query",
+          "name": "exclude_tag_id",
+          "required": false,
+          "schema_hash": "af7df4ff6cbe6f417d01a38735f96ba3b6cbdd92c087c5c215b4f24ea00ef2de"
+        },
+        {
+          "in": "query",
+          "name": "exclude_tag_slug",
+          "required": false,
+          "schema_hash": "dc08f0508ed0f286024902b3ca2e9326ae4016f91e3011fb7807adbcf08230fa"
+        },
+        {
+          "in": "query",
+          "name": "fields",
+          "required": false,
+          "schema_hash": "9d04ba678f443951d9da5db6528d989a577e2ac989d566de9567f5f8ffe33e85"
+        },
+        {
+          "in": "query",
+          "name": "include",
+          "required": false,
+          "schema_hash": "e46f28dba5e6cfe5a6ac351b160fcc5626f27ccab8a979bd5c34f5dcb8220d80"
+        },
+        {
+          "in": "query",
+          "name": "is_featured",
+          "required": false,
+          "schema_hash": "1a65b924418504f09e60e82fce3595e38e9f805ea7c116bfe42489ff6e7fa026"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "70efd84fdaa6218d3ac692f2f141f553eb73c9646f64d475a20f0c919be224b4"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "6bc7ba123220baefc074142fe97f86b9e09d98f36fa1385ea0909da819c9052a"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema_hash": "3750a500e3b337a68cf9c3baa9eb149aa58c3df4e87cf70a5c5d92a0043875de"
+        },
+        {
+          "in": "query",
+          "name": "per_page",
+          "required": false,
+          "schema_hash": "d3e05db909e79d5d4d5f49c59bba5b3a19a5f70f6814a58798e3dc8a45576b6b"
+        },
+        {
+          "in": "query",
+          "name": "search",
+          "required": false,
+          "schema_hash": "674fd381413c7d7219f554802175e571136975bcb9eb28495447b9500534cf7b"
+        },
+        {
+          "in": "query",
+          "name": "sort",
+          "required": false,
+          "schema_hash": "9937f8d959e9f80df70b08a4c4739af7ac484f1a6de98b2178a14c12b6eca305"
+        },
+        {
+          "in": "query",
+          "name": "status",
+          "required": false,
+          "schema_hash": "9358106e884dbb5365f2926f2b22093e4fc0c78bf09a710bfa73a877a1c37ada"
+        },
+        {
+          "in": "query",
+          "name": "tag_id",
+          "required": false,
+          "schema_hash": "9b9d0f579c437dcb6da93b4f7ca471108cd4408405beadefbc2b915aaa0a63bb"
+        },
+        {
+          "in": "query",
+          "name": "tag_match",
+          "required": false,
+          "schema_hash": "0598fb4b19fb72990d246837006ee345ba92061bae4a3cee3b9291ab18b427d7"
+        },
+        {
+          "in": "query",
+          "name": "tag_slug",
+          "required": false,
+          "schema_hash": "483b2ebfb4b452f31556481e7e60a95cfa10e038259232428985d5857a099b3e"
+        }
+      ],
+      "path": "/v1/posts",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object",
+                "page",
+                "per_page",
+                "total_items",
+                "total_pages"
+              ],
+              "required": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object"
+              ],
+              "schema_hash": "3257e8c195710dfdc46c0af4d2dad830412bd53c4f418c031c915dd3260819e9"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "0067bbe7b1c61a0f47600d7160d3cdc4653acefbe9529668737b03bc399ea0d0"
+        },
+        {
+          "in": "query",
+          "name": "fields",
+          "required": false,
+          "schema_hash": "9d04ba678f443951d9da5db6528d989a577e2ac989d566de9567f5f8ffe33e85"
+        },
+        {
+          "in": "query",
+          "name": "include",
+          "required": false,
+          "schema_hash": "e46f28dba5e6cfe5a6ac351b160fcc5626f27ccab8a979bd5c34f5dcb8220d80"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "779d446d522b52aca9a8b6e9108c3d25f934521870960732cfa8c5be67a314de"
+        }
+      ],
+      "path": "/v1/posts/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "authors",
+                "body_markdown",
+                "canonical_url",
+                "categories",
+                "content_type",
+                "created_at",
+                "excerpt",
+                "featured_media_asset_id",
+                "focus_keyphrase",
+                "id",
+                "is_featured",
+                "locale",
+                "media",
+                "media_asset_ids",
+                "metadata",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "published_at",
+                "robots_follow",
+                "robots_index",
+                "scheduled_at",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "status",
+                "tags",
+                "title",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at",
+                "version"
+              ],
+              "required": [
+                "content_type",
+                "id",
+                "locale",
+                "object",
+                "organization_id"
+              ],
+              "schema_hash": "9da567b50268216bf77a3f77d32739cb06d7271ae74e17eb82b8742b15dce7b0"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "0067bbe7b1c61a0f47600d7160d3cdc4653acefbe9529668737b03bc399ea0d0"
+        },
+        {
+          "in": "query",
+          "name": "after",
+          "required": false,
+          "schema_hash": "c6c7f3f6640e701b4f516295c8e772ce2edc4934e902a19ec0a81b1a03bc0e99"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "040f3db3a42665e2a23b1d83c09276c7474370f44e67870b062572a4f6f5e6d7"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "45a70f4c7ed63936495b15594a5376129eb768e312c6c4d378ab3d356f6ec405"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema_hash": "3750a500e3b337a68cf9c3baa9eb149aa58c3df4e87cf70a5c5d92a0043875de"
+        },
+        {
+          "in": "query",
+          "name": "per_page",
+          "required": false,
+          "schema_hash": "d3e05db909e79d5d4d5f49c59bba5b3a19a5f70f6814a58798e3dc8a45576b6b"
+        }
+      ],
+      "path": "/v1/posts/{id}/revisions",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object",
+                "page",
+                "per_page",
+                "total_items",
+                "total_pages"
+              ],
+              "required": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object"
+              ],
+              "schema_hash": "7fc567ee48d1834ee5a0bdcec0c3852ec7c4ccd72cef5fbfd901a9d77e3beccf"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "0067bbe7b1c61a0f47600d7160d3cdc4653acefbe9529668737b03bc399ea0d0"
+        },
+        {
+          "in": "path",
+          "name": "revisionId",
+          "required": true,
+          "schema_hash": "87bd05827bb43813a701e0aacd12a35f235e2a3eccdef8596e1a713c22781057"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "45a70f4c7ed63936495b15594a5376129eb768e312c6c4d378ab3d356f6ec405"
+        }
+      ],
+      "path": "/v1/posts/{id}/revisions/{revisionId}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "body_markdown",
+                "created_at",
+                "id",
+                "object",
+                "parent_post_id",
+                "title",
+                "updated_at",
+                "version"
+              ],
+              "required": [
+                "body_markdown",
+                "created_at",
+                "id",
+                "object",
+                "parent_post_id",
+                "title",
+                "updated_at",
+                "version"
+              ],
+              "schema_hash": "2db9206974941d4cc35c1ca4769e672a1bb2bac6fb98819f0dc1245d6fee8650"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "schema_hash": "70121d1ec435139650bfb863730c63dc41d42f1bdf56e9b6c9b3336988d9bdc6"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "1cd595b8909601c4739e216ab8c3b0f6e323f9347e9deface6956b79ac333641"
+        }
+      ],
+      "path": "/v1/posts/slug-redirects/{slug}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "content_type",
+                "from_slug",
+                "locale",
+                "object",
+                "post_id",
+                "status_code",
+                "to_slug"
+              ],
+              "required": [
+                "content_type",
+                "from_slug",
+                "locale",
+                "object",
+                "post_id",
+                "status_code",
+                "to_slug"
+              ],
+              "schema_hash": "5f709105d9ed70ea95563847d4cec77fdbd5ea0a53984816a7abba0482a1c335"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "ff1f24d131f4f43ca5f486469b98e8298afa1be349210f1366d264beed30a160"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "bf4781f07c06d04fb9463bb8e0d0007de1abbf01789717dd1018cd40c016ec2d"
+        }
+      ],
+      "path": "/v1/sitemap",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "text/plain",
+              "properties": [],
+              "required": [],
+              "schema_hash": "1739628fc734232deec422cb50f586a25aa543d04512df5eec000b2c570caa3e"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "after",
+          "required": false,
+          "schema_hash": "97d78bbea6fac0527834a5579ce41087597bab01039922975d5b0fe530d7a001"
+        },
+        {
+          "in": "query",
+          "name": "include",
+          "required": false,
+          "schema_hash": "5de67946b3bf833f3a42a776e66f78ad7d27f106c463174892d0b046feb4b151"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "schema_hash": "a7b626dfa49e154958b60d0f6f11fa70c2db6160839d9780da87609cb0756647"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "aeda0e51a6cd6496d45a9bf63837a44ff39916e263605447f877c9e69431ccef"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema_hash": "3750a500e3b337a68cf9c3baa9eb149aa58c3df4e87cf70a5c5d92a0043875de"
+        },
+        {
+          "in": "query",
+          "name": "per_page",
+          "required": false,
+          "schema_hash": "d3e05db909e79d5d4d5f49c59bba5b3a19a5f70f6814a58798e3dc8a45576b6b"
+        }
+      ],
+      "path": "/v1/tags",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object",
+                "page",
+                "per_page",
+                "total_items",
+                "total_pages"
+              ],
+              "required": [
+                "data",
+                "has_more",
+                "next_cursor",
+                "object"
+              ],
+              "schema_hash": "73384e0c6cdc2cc2ab5c21c49bae1e63016faf22533e265698c8a3c2560869db"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "public-or-private",
+      "method": "GET",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "46417950d70e3687f0addc793d692bc2ac4dcaaa027059750a17112f844bc02a"
+        },
+        {
+          "in": "query",
+          "name": "include",
+          "required": false,
+          "schema_hash": "5de67946b3bf833f3a42a776e66f78ad7d27f106c463174892d0b046feb4b151"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "11058998b3bdbf11d6e7e9b078fb64e925d45ca40f176c7a016350f5313162c7"
+        }
+      ],
+      "path": "/v1/tags/{id}",
+      "request_body": [],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "required": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "schema_hash": "e3bba0aba66599537425483be374fffe0bdba48bab1536429b17be429d6ac905"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [],
+      "path": "/v1/authors",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "avatar_media_id",
+            "bio",
+            "member_id",
+            "metadata",
+            "public_name",
+            "slug",
+            "website_url"
+          ],
+          "required": [
+            "public_name"
+          ],
+          "schema_hash": "b56cb356a3b71e1ce602cb62b9c4afd0d2c7468dffb15d22b4a3fdcd248636e5"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "avatar_media_id",
+                "avatar_url",
+                "bio",
+                "created_at",
+                "id",
+                "metadata",
+                "object",
+                "organization_id",
+                "public_name",
+                "slug",
+                "updated_at",
+                "website_url"
+              ],
+              "required": [
+                "avatar_media_id",
+                "avatar_url",
+                "bio",
+                "created_at",
+                "id",
+                "metadata",
+                "object",
+                "organization_id",
+                "public_name",
+                "slug",
+                "updated_at",
+                "website_url"
+              ],
+              "schema_hash": "df63c3dbae3796584bccedb5897126e0b20583f8ec73dc053f15c3655884e239"
+            }
+          ],
+          "status": "201"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "c37c628db19094e39799a59f765537a05169bb6df82899eda3a9953dc6a47e75"
+        }
+      ],
+      "path": "/v1/authors/{id}",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "avatar_media_id",
+            "bio",
+            "member_id",
+            "metadata",
+            "public_name",
+            "slug",
+            "website_url"
+          ],
+          "required": [],
+          "schema_hash": "1e3f88c2fcc3956d9ab2982f200428b2d0c7e2e319707cb3ef2e45d3a1a01a28"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "avatar_media_id",
+                "avatar_url",
+                "bio",
+                "created_at",
+                "id",
+                "metadata",
+                "object",
+                "organization_id",
+                "public_name",
+                "slug",
+                "updated_at",
+                "website_url"
+              ],
+              "required": [
+                "avatar_media_id",
+                "avatar_url",
+                "bio",
+                "created_at",
+                "id",
+                "metadata",
+                "object",
+                "organization_id",
+                "public_name",
+                "slug",
+                "updated_at",
+                "website_url"
+              ],
+              "schema_hash": "df63c3dbae3796584bccedb5897126e0b20583f8ec73dc053f15c3655884e239"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [],
+      "path": "/v1/categories",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "canonical_url",
+            "description",
+            "focus_keyphrase",
+            "locale",
+            "metadata",
+            "name",
+            "open_graph_description",
+            "open_graph_media_asset_id",
+            "open_graph_title",
+            "parent_taxonomy_term_id",
+            "robots_follow",
+            "robots_index",
+            "schema_type",
+            "seo_description",
+            "seo_keywords",
+            "seo_title",
+            "slug",
+            "translation_of_id",
+            "twitter_description",
+            "twitter_media_asset_id",
+            "twitter_title"
+          ],
+          "required": [
+            "name"
+          ],
+          "schema_hash": "51781c57b51d1942425d02aaae8113ef7305ca81ff70e4f3cadd24078b9f3cc5"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "required": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "schema_hash": "e3bba0aba66599537425483be374fffe0bdba48bab1536429b17be429d6ac905"
+            }
+          ],
+          "status": "201"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/categories/{id}",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "canonical_url",
+            "description",
+            "focus_keyphrase",
+            "locale",
+            "metadata",
+            "name",
+            "open_graph_description",
+            "open_graph_media_asset_id",
+            "open_graph_title",
+            "parent_taxonomy_term_id",
+            "robots_follow",
+            "robots_index",
+            "schema_type",
+            "seo_description",
+            "seo_keywords",
+            "seo_title",
+            "slug",
+            "translation_of_id",
+            "twitter_description",
+            "twitter_media_asset_id",
+            "twitter_title"
+          ],
+          "required": [],
+          "schema_hash": "2e0b4a14b43dd0b6976dc1a1d7292acbd617c212cc97ab27e4479bcb3ae74b01"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "required": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "schema_hash": "e3bba0aba66599537425483be374fffe0bdba48bab1536429b17be429d6ac905"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [],
+      "path": "/v1/media",
+      "request_body": [
+        {
+          "content_type": "multipart/form-data",
+          "properties": [
+            "alt_text",
+            "caption",
+            "file",
+            "metadata"
+          ],
+          "required": [
+            "file"
+          ],
+          "schema_hash": "c2b39567a9898fa2a8bf54587c1903b934cfd1978210818afdcffa88c49bfacb"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "alt_text",
+                "caption",
+                "created_at",
+                "height",
+                "id",
+                "metadata",
+                "mime_type",
+                "object",
+                "organization_id",
+                "original_filename",
+                "size_bytes",
+                "updated_at",
+                "url",
+                "width"
+              ],
+              "required": [
+                "alt_text",
+                "caption",
+                "created_at",
+                "height",
+                "id",
+                "metadata",
+                "mime_type",
+                "object",
+                "organization_id",
+                "original_filename",
+                "size_bytes",
+                "updated_at",
+                "url",
+                "width"
+              ],
+              "schema_hash": "a91821fd8c19fb1a188fd320513c856e06bfe7b9d6c12ca0b5a01d0769b37f37"
+            }
+          ],
+          "status": "201"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "422"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "502"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/media/{id}",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "alt_text",
+            "caption",
+            "metadata"
+          ],
+          "required": [],
+          "schema_hash": "8c69d339933ce123dcaed096250abc174e251e1f7dfc0f8f908c419ead8e08dd"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "alt_text",
+                "caption",
+                "created_at",
+                "height",
+                "id",
+                "metadata",
+                "mime_type",
+                "object",
+                "organization_id",
+                "original_filename",
+                "size_bytes",
+                "updated_at",
+                "url",
+                "width"
+              ],
+              "required": [
+                "alt_text",
+                "caption",
+                "created_at",
+                "height",
+                "id",
+                "metadata",
+                "mime_type",
+                "object",
+                "organization_id",
+                "original_filename",
+                "size_bytes",
+                "updated_at",
+                "url",
+                "width"
+              ],
+              "schema_hash": "a91821fd8c19fb1a188fd320513c856e06bfe7b9d6c12ca0b5a01d0769b37f37"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [],
+      "path": "/v1/posts",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "author_profile_ids",
+            "body_markdown",
+            "canonical_url",
+            "category_ids",
+            "excerpt",
+            "featured_media_asset_id",
+            "focus_keyphrase",
+            "is_featured",
+            "locale",
+            "media_asset_ids",
+            "metadata",
+            "open_graph_description",
+            "open_graph_media_asset_id",
+            "open_graph_title",
+            "published_at",
+            "robots_follow",
+            "robots_index",
+            "scheduled_at",
+            "schema_type",
+            "seo_description",
+            "seo_keywords",
+            "seo_title",
+            "slug",
+            "status",
+            "tag_ids",
+            "title",
+            "translation_of_id",
+            "twitter_description",
+            "twitter_media_asset_id",
+            "twitter_title"
+          ],
+          "required": [
+            "title"
+          ],
+          "schema_hash": "f537d3866eaa89d019b602f525e7862e616b5d47141dac22d9cb5454be0c00ae"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "authors",
+                "body_markdown",
+                "canonical_url",
+                "categories",
+                "content_type",
+                "created_at",
+                "excerpt",
+                "featured_media_asset_id",
+                "focus_keyphrase",
+                "id",
+                "is_featured",
+                "locale",
+                "media",
+                "media_asset_ids",
+                "metadata",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "published_at",
+                "robots_follow",
+                "robots_index",
+                "scheduled_at",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "status",
+                "tags",
+                "title",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at",
+                "version"
+              ],
+              "required": [
+                "content_type",
+                "id",
+                "locale",
+                "object",
+                "organization_id"
+              ],
+              "schema_hash": "9da567b50268216bf77a3f77d32739cb06d7271ae74e17eb82b8742b15dce7b0"
+            }
+          ],
+          "status": "201"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        },
+        {
+          "in": "query",
+          "name": "locale",
+          "required": false,
+          "schema_hash": "45a70f4c7ed63936495b15594a5376129eb768e312c6c4d378ab3d356f6ec405"
+        }
+      ],
+      "path": "/v1/posts/{id}",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "author_profile_ids",
+            "body_markdown",
+            "canonical_url",
+            "category_ids",
+            "excerpt",
+            "expected_version",
+            "featured_media_asset_id",
+            "focus_keyphrase",
+            "is_featured",
+            "locale",
+            "media_asset_ids",
+            "metadata",
+            "open_graph_description",
+            "open_graph_media_asset_id",
+            "open_graph_title",
+            "published_at",
+            "robots_follow",
+            "robots_index",
+            "scheduled_at",
+            "schema_type",
+            "seo_description",
+            "seo_keywords",
+            "seo_title",
+            "slug",
+            "status",
+            "tag_ids",
+            "title",
+            "translation_of_id",
+            "twitter_description",
+            "twitter_media_asset_id",
+            "twitter_title"
+          ],
+          "required": [],
+          "schema_hash": "85f14ec8d0f5914058169d8390da0e7e2dded7d8e31ceabe848ca56ba4e8b136"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "authors",
+                "body_markdown",
+                "canonical_url",
+                "categories",
+                "content_type",
+                "created_at",
+                "excerpt",
+                "featured_media_asset_id",
+                "focus_keyphrase",
+                "id",
+                "is_featured",
+                "locale",
+                "media",
+                "media_asset_ids",
+                "metadata",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "published_at",
+                "robots_follow",
+                "robots_index",
+                "scheduled_at",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "status",
+                "tags",
+                "title",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at",
+                "version"
+              ],
+              "required": [
+                "content_type",
+                "id",
+                "locale",
+                "object",
+                "organization_id"
+              ],
+              "schema_hash": "9da567b50268216bf77a3f77d32739cb06d7271ae74e17eb82b8742b15dce7b0"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [],
+      "path": "/v1/tags",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "canonical_url",
+            "description",
+            "focus_keyphrase",
+            "locale",
+            "metadata",
+            "name",
+            "open_graph_description",
+            "open_graph_media_asset_id",
+            "open_graph_title",
+            "parent_taxonomy_term_id",
+            "robots_follow",
+            "robots_index",
+            "schema_type",
+            "seo_description",
+            "seo_keywords",
+            "seo_title",
+            "slug",
+            "translation_of_id",
+            "twitter_description",
+            "twitter_media_asset_id",
+            "twitter_title"
+          ],
+          "required": [
+            "name"
+          ],
+          "schema_hash": "51781c57b51d1942425d02aaae8113ef7305ca81ff70e4f3cadd24078b9f3cc5"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "required": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "schema_hash": "e3bba0aba66599537425483be374fffe0bdba48bab1536429b17be429d6ac905"
+            }
+          ],
+          "status": "201"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    },
+    {
+      "key_type": "private",
+      "method": "POST",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema_hash": "00404e686415370f1711c4d7acfa2905444d3cf23cef2e10c47d445ebe690f96"
+        }
+      ],
+      "path": "/v1/tags/{id}",
+      "request_body": [
+        {
+          "content_type": "application/json",
+          "properties": [
+            "canonical_url",
+            "description",
+            "focus_keyphrase",
+            "locale",
+            "metadata",
+            "name",
+            "open_graph_description",
+            "open_graph_media_asset_id",
+            "open_graph_title",
+            "parent_taxonomy_term_id",
+            "robots_follow",
+            "robots_index",
+            "schema_type",
+            "seo_description",
+            "seo_keywords",
+            "seo_title",
+            "slug",
+            "translation_of_id",
+            "twitter_description",
+            "twitter_media_asset_id",
+            "twitter_title"
+          ],
+          "required": [],
+          "schema_hash": "2e0b4a14b43dd0b6976dc1a1d7292acbd617c212cc97ab27e4479bcb3ae74b01"
+        }
+      ],
+      "responses": [
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "translations",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "required": [
+                "canonical_url",
+                "created_at",
+                "description",
+                "focus_keyphrase",
+                "id",
+                "locale",
+                "metadata",
+                "name",
+                "object",
+                "open_graph_description",
+                "open_graph_media_asset_id",
+                "open_graph_title",
+                "organization_id",
+                "parent_taxonomy_term_id",
+                "robots_follow",
+                "robots_index",
+                "schema_type",
+                "seo_description",
+                "seo_keywords",
+                "seo_title",
+                "slug",
+                "taxonomy_type",
+                "twitter_description",
+                "twitter_media_asset_id",
+                "twitter_title",
+                "updated_at"
+              ],
+              "schema_hash": "e3bba0aba66599537425483be374fffe0bdba48bab1536429b17be429d6ac905"
+            }
+          ],
+          "status": "200"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "400"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "401"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "403"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "404"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "409"
+        },
+        {
+          "content": [
+            {
+              "content_type": "application/json",
+              "properties": [
+                "error"
+              ],
+              "required": [
+                "error"
+              ],
+              "schema_hash": "2e53667e936f13827468e4b74cf808b56b880b8cebdea273d60be3b96fed8bd4"
+            }
+          ],
+          "status": "429"
+        }
+      ]
+    }
+  ]
+}

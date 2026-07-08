@@ -17,15 +17,25 @@ export type RequestConfig = RequestOptions & {
 };
 
 const DEFAULT_API_URL = "https://api.cli-blog.com";
+const MAX_RETRY_DELAY_MS = 30_000;
 
 const safeMethods = new Set(["GET", "HEAD", "OPTIONS"]);
-const retryStatuses = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
+const retryStatuses = new Set([408, 425, 500, 502, 503, 504]);
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const normalizeApiUrl = (apiUrl?: string) => {
   const value = apiUrl ?? DEFAULT_API_URL;
-  return value.endsWith("/") ? value.slice(0, -1) : value;
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "http:" && url.protocol !== "https:") throw new Error("Unsupported protocol");
+    return url.toString().replace(/\/$/, "");
+  } catch (cause) {
+    throw new CliBlogError("Cli Blog API URL must be a valid HTTP or HTTPS URL", {
+      cause,
+      code: "invalid_api_url",
+    });
+  }
 };
 
 const appendQuery = (url: URL, query?: Record<string, QueryValue>) => {
@@ -45,10 +55,13 @@ const parseRetryAfter = (response: Response) => {
   const value = response.headers.get("retry-after");
   if (!value) return null;
   const seconds = Number(value);
-  if (Number.isFinite(seconds)) return Math.max(0, seconds * 1000);
+  if (Number.isFinite(seconds)) return Math.min(MAX_RETRY_DELAY_MS, Math.max(0, seconds * 1000));
   const date = Date.parse(value);
-  return Number.isFinite(date) ? Math.max(0, date - Date.now()) : null;
+  return Number.isFinite(date) ? Math.min(MAX_RETRY_DELAY_MS, Math.max(0, date - Date.now())) : null;
 };
+
+const shouldRetryResponse = (response: Response) =>
+  retryStatuses.has(response.status) || (response.status === 429 && response.headers.has("retry-after"));
 
 export class HttpClient {
   private readonly apiKey: string;
@@ -85,6 +98,13 @@ export class HttpClient {
   }
 
   async *paginate<T>(path: string, config: RequestConfig = {}): AsyncGenerator<T, void, unknown> {
+    if (config.query?.page !== undefined || config.query?.per_page !== undefined) {
+      throw new CliBlogError("Cursor pagination helpers do not accept page or per_page. Use list() for numbered pages.", {
+        code: "invalid_pagination",
+        param: config.query.page !== undefined ? "page" : "per_page",
+      });
+    }
+
     let after = typeof config.query?.after === "string" ? config.query.after : undefined;
 
     do {
@@ -135,7 +155,7 @@ export class HttpClient {
 
         if (response.ok) return response;
 
-        if (attempt < maxAttempts && retryStatuses.has(response.status)) {
+        if (attempt < maxAttempts && shouldRetryResponse(response)) {
           await sleep(parseRetryAfter(response) ?? 100 * attempt);
           continue;
         }
@@ -143,7 +163,19 @@ export class HttpClient {
         throw await errorFromResponse(response);
       } catch (error) {
         lastError = error;
-        if (attempt >= maxAttempts || error instanceof CliBlogError) throw error;
+        if (error instanceof CliBlogError) throw error;
+        if (config.signal?.aborted) {
+          throw new CliBlogError("Cli Blog API request was aborted", {
+            cause: error,
+            code: "request_aborted",
+          });
+        }
+        if (attempt >= maxAttempts) {
+          throw new CliBlogError("Cli Blog API request failed", {
+            cause: error,
+            code: "request_failed",
+          });
+        }
         await sleep(100 * attempt);
       }
     }

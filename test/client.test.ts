@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { CliBlog, CliBlogError } from "../src/index.js";
+import { SDK_PUBLIC_OPERATIONS } from "./sdk-operations.js";
 
 const jsonResponse = (body: unknown, init: ResponseInit = {}) =>
   new Response(JSON.stringify(body), {
@@ -12,7 +13,7 @@ describe("@cli-blog/node", () => {
   test("sends API keys and query controls", async () => {
     const requests: Array<{ input: URL | RequestInfo; init?: RequestInit }> = [];
     const client = new CliBlog({
-      apiKey: "cli_blog_pk_test",
+      apiKey: "<public-api-key>",
       apiUrl: "https://api.example.com",
       fetch: async (input, init) => {
         requests.push({ init, input });
@@ -21,6 +22,8 @@ describe("@cli-blog/node", () => {
     });
 
     await client.posts.list({
+      author_match: "all",
+      exclude_category_slug: ["internal", "private"],
       fields: ["summary", "content"],
       include: ["authors", "tags"],
       limit: 10,
@@ -29,24 +32,62 @@ describe("@cli-blog/node", () => {
 
     const request = requests[0];
     expect(request).toBeDefined();
-    expect(new Headers(request?.init?.headers).get("x-api-key")).toBe("cli_blog_pk_test");
+    expect(new Headers(request?.init?.headers).get("x-api-key")).toBe("<public-api-key>");
     expect(String(request?.input)).toContain("/v1/posts?");
     expect(String(request?.input)).toContain("fields=summary");
     expect(String(request?.input)).toContain("fields=content");
     expect(String(request?.input)).toContain("include=authors");
     expect(String(request?.input)).toContain("include=tags");
     expect(String(request?.input)).toContain("limit=10");
+    expect(String(request?.input)).toContain("author_match=all");
+    expect(String(request?.input)).toContain("exclude_category_slug=internal%2Cprivate");
+  });
+
+  test("supports numbered pagination parameters and metadata", async () => {
+    const requests: Array<{ input: URL | RequestInfo; init?: RequestInit }> = [];
+    const client = new CliBlog({
+      apiKey: "<public-api-key>",
+      apiUrl: "https://api.example.com",
+      fetch: async (input, init) => {
+        requests.push({ init, input });
+        return jsonResponse({
+          data: [],
+          has_more: true,
+          next_cursor: "cursor_next",
+          object: "list",
+          page: 2,
+          per_page: 25,
+          total_items: 120,
+          total_pages: 5,
+        });
+      },
+    });
+
+    const page = await client.posts.list({ fields: ["summary"], page: 2, per_page: 25 });
+
+    expect(page).toMatchObject({
+      has_more: true,
+      next_cursor: "cursor_next",
+      page: 2,
+      per_page: 25,
+      total_items: 120,
+      total_pages: 5,
+    });
+    expect(String(requests[0]?.input)).toContain("page=2");
+    expect(String(requests[0]?.input)).toContain("per_page=25");
+    expect(String(requests[0]?.input)).not.toContain("limit=");
+    expect(String(requests[0]?.input)).not.toContain("after=");
   });
 
   test("maps API errors to CliBlogError", async () => {
     const client = new CliBlog({
-      apiKey: "cli_blog_sk_test",
+      apiKey: "<private-api-key>",
       fetch: async () =>
         jsonResponse(
           {
             error: {
               code: "forbidden",
-              field: "x-api-key",
+              param: "x-api-key",
               message: "Private key required",
             },
           },
@@ -57,6 +98,7 @@ describe("@cli-blog/node", () => {
     await expect(client.posts.create({ title: "Hello" })).rejects.toMatchObject({
       code: "forbidden",
       field: "x-api-key",
+      param: "x-api-key",
       message: "Private key required",
       requestId: "req_123",
       status: 403,
@@ -66,7 +108,7 @@ describe("@cli-blog/node", () => {
   test("uploads media with native FormData", async () => {
     const bodies: unknown[] = [];
     const client = new CliBlog({
-      apiKey: "cli_blog_sk_test",
+      apiKey: "<private-api-key>",
       fetch: async (_request, init) => {
         bodies.push(init?.body);
         return jsonResponse({
@@ -104,7 +146,7 @@ describe("@cli-blog/node", () => {
   test("supports revisions, slug redirects, sitemap/feed XML, and final author avatar fields", async () => {
     const requests: Array<{ input: URL | RequestInfo; init?: RequestInit }> = [];
     const client = new CliBlog({
-      apiKey: "cli_blog_sk_test",
+      apiKey: "<private-api-key>",
       apiUrl: "https://api.example.com",
       fetch: async (input, init) => {
         requests.push({ init, input });
@@ -183,34 +225,98 @@ describe("@cli-blog/node", () => {
     expect(String(requests[2]?.input)).toContain("/v1/posts/post_123/revisions/rev_123?");
     expect(String(requests[3]?.input)).toContain("/v1/posts/slug-redirects/old-slug?");
     expect(String(requests[4]?.input)).toContain("/v1/sitemap?");
-    expect(new Headers(requests[4]?.init?.headers).get("user-agent")).toBe("@cli-blog/node/0.1.3");
+    expect(new Headers(requests[4]?.init?.headers).get("user-agent")).toBe("@cli-blog/node/0.2.0");
     expect(String(requests[5]?.input)).toContain("/v1/feed?");
   });
 
-  test("keeps SDK route coverage aligned with public OpenAPI paths", async () => {
-    const client = new CliBlog({ apiKey: "cli_blog_pk_test" });
-    const publicPaths = (await Bun.file(new URL("./public-openapi-paths.json", import.meta.url)).json()) as string[];
-    const sdkPaths = [
-      "/v1/authors",
-      "/v1/authors/{id}",
-      "/v1/categories",
-      "/v1/categories/{id}",
-      "/v1/feed",
-      "/v1/locales",
-      "/v1/media",
-      "/v1/media/{id}",
-      "/v1/posts",
-      "/v1/posts/{id}",
-      "/v1/posts/{id}/revisions",
-      "/v1/posts/{id}/revisions/{revisionId}",
-      "/v1/posts/slug-redirects/{slug}",
-      "/v1/sitemap",
-      "/v1/tags",
-      "/v1/tags/{id}",
-    ].sort();
+  test("keeps SDK operation coverage aligned with the generated public OpenAPI contract", async () => {
+    const client = new CliBlog({ apiKey: "<public-api-key>" });
+    const contract = (await Bun.file(new URL("./openapi-contract.json", import.meta.url)).json()) as {
+      operations: Array<{ method: string; parameters: Array<{ in: string; name: string }>; path: string }>;
+    };
+    const publicOperations = contract.operations.map(({ method, path }) => `${method} ${path}`).sort();
+    const postList = contract.operations.find(({ method, path }) => method === "GET" && path === "/v1/posts");
 
     expect("settings" in (client as object)).toBe(false);
-    expect(publicPaths).not.toContain("/v1/settings");
-    expect(publicPaths.sort()).toEqual(sdkPaths);
+    expect(publicOperations).not.toContain("GET /v1/settings");
+    expect(publicOperations).toEqual([...SDK_PUBLIC_OPERATIONS].sort());
+    expect(postList?.parameters.filter(({ in: location }) => location === "query").map(({ name }) => name)).toEqual(
+      expect.arrayContaining(["author_match", "exclude_author_id", "category_match", "exclude_tag_slug", "page", "per_page"]),
+    );
+  });
+
+  test("keeps dual-mode pagination contract coverage across public list endpoints", async () => {
+    const contract = (await Bun.file(new URL("./openapi-contract.json", import.meta.url)).json()) as {
+      operations: Array<{
+        method: string;
+        parameters: Array<{ in: string; name: string }>;
+        path: string;
+        responses: Array<{ content: Array<{ content_type: string; properties: string[]; required: string[] }>; status: string }>;
+      }>;
+    };
+    const listPaths = ["/v1/posts", "/v1/posts/{id}/revisions", "/v1/authors", "/v1/media", "/v1/categories", "/v1/tags"];
+
+    for (const path of listPaths) {
+      const operation = contract.operations.find((item) => item.method === "GET" && item.path === path);
+      const queryParams = operation?.parameters.filter(({ in: location }) => location === "query").map(({ name }) => name);
+      const jsonResponseSchema = operation?.responses
+        .find(({ status }) => status === "200")
+        ?.content.find(({ content_type }) => content_type === "application/json");
+
+      expect(queryParams).toEqual(expect.arrayContaining(["after", "limit", "page", "per_page"]));
+      expect(jsonResponseSchema?.required).toEqual(["data", "has_more", "next_cursor", "object"]);
+      expect(jsonResponseSchema?.properties).toEqual(
+        expect.arrayContaining(["data", "has_more", "next_cursor", "object", "page", "per_page", "total_items", "total_pages"]),
+      );
+    }
+  });
+
+  test("rejects numbered pagination controls in cursor iteration helpers", async () => {
+    const client = new CliBlog({
+      apiKey: "<public-api-key>",
+      fetch: async () => jsonResponse({ data: [], has_more: false, next_cursor: null, object: "list" }),
+    });
+
+    const iterator = client.posts.paginate({ page: 1 } as never);
+    await expect(iterator.next()).rejects.toMatchObject({
+      code: "invalid_pagination",
+      param: "page",
+    });
+  });
+
+  test("does not retry conflicts or hard plan limits", async () => {
+    for (const status of [409, 429]) {
+      let attempts = 0;
+      const client = new CliBlog({
+        apiKey: "<public-api-key>",
+        fetch: async () => {
+          attempts += 1;
+          return jsonResponse({ error: { code: "limit", message: "Stop" } }, { status });
+        },
+      });
+
+      await expect(client.posts.list()).rejects.toBeInstanceOf(CliBlogError);
+      expect(attempts).toBe(1);
+    }
+  });
+
+  test("wraps exhausted network failures and invalid API URLs", async () => {
+    let attempts = 0;
+    const client = new CliBlog({
+      apiKey: "<public-api-key>",
+      fetch: async () => {
+        attempts += 1;
+        throw new TypeError("offline");
+      },
+    });
+
+    await expect(client.posts.list()).rejects.toMatchObject({ code: "request_failed", name: "CliBlogError" });
+    expect(attempts).toBe(3);
+    expect(() => new CliBlog({ apiKey: "<public-api-key>", apiUrl: "not-a-url" })).toThrow(CliBlogError);
+  });
+
+  test("keeps the package and user-agent versions synchronized", async () => {
+    const packageJson = (await Bun.file(new URL("../package.json", import.meta.url)).json()) as { version: string };
+    expect(packageJson.version).toBe("0.2.0");
   });
 });
