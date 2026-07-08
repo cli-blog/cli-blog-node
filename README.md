@@ -55,7 +55,7 @@ Use public keys for published-content reads. Use private keys only from trusted 
 
 ## Quick Example
 
-Create and publish a San Francisco story:
+Create a draft, then publish a San Francisco story:
 
 ```ts
 const author = await blog.authors.create({
@@ -88,6 +88,8 @@ const published = await blog.posts.publish(draft.id, {
   expected_version: draft.version,
 });
 ```
+
+`publish()` is a convenience helper for the common review-then-publish flow. The canonical API model is still the post `status` field: creating or updating a post with `status: "published"` also publishes it, while omitting `status` on create defaults to `draft`.
 
 Expected result shape:
 
@@ -128,9 +130,9 @@ For exact numbered pages, pass `page` and optional `per_page` to `list()`. Numbe
 | `blog.posts.list(params)` | List posts. | Optional: `status`, `locale`, `limit`, `after`, `page`, `per_page`, `search`, `sort`, `direction`, `fields`, `include`, `is_featured`, author/category/tag filters. |
 | `blog.posts.paginate(params)` | Iterate through all matching posts using cursors. | Same filters as `list`, with cursor controls only. |
 | `blog.posts.get(idOrSlug, params)` | Fetch one post by ID or slug. | Optional: `locale`, `fields`, `include`. |
-| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | Required: `title`. Optional: `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, `media_asset_ids`, SEO fields. |
-| `blog.posts.update(idOrSlug, input, params)` | Update a post. | Optional: `expected_version`, fields to change, `locale` lookup. |
-| `blog.posts.publish(idOrSlug, input, params)` | Publish a post. | Optional: `expected_version`, `published_at`, `locale`. |
+| `blog.posts.create(input)` | Create a draft, scheduled, or published post. | Required: `title`. Optional: `body_markdown`, `locale`, `status`, `author_profile_ids`, `category_ids`, `tag_ids`, `media_asset_ids`, SEO fields. Omitted `status` defaults to `draft`. |
+| `blog.posts.update(idOrSlug, input, params)` | Update a post, including direct status changes. | Optional: `expected_version`, fields to change, `status`, `locale` lookup. |
+| `blog.posts.publish(idOrSlug, input, params)` | Convenience helper for `update(..., { status: "published" })`. | Optional: `expected_version`, `published_at`, `locale`. |
 | `blog.posts.schedule(idOrSlug, scheduledAt, input, params)` | Schedule a post. | ISO datetime and optional `expected_version`. |
 | `blog.posts.delete(idOrSlug, params)` | Archive/delete a post through the API. | Optional `locale`. |
 
@@ -150,6 +152,21 @@ const posts = await blog.posts.list({
   category_match: "all",
   tag_slug: ["city-notes", "parks"],
   exclude_tag_slug: ["internal"],
+});
+```
+
+Direct status updates:
+
+```ts
+await blog.posts.update(draft.id, {
+  status: "published",
+  expected_version: draft.version,
+});
+
+const publishedOnCreate = await blog.posts.create({
+  title: "Launch notes",
+  body_markdown: "Published immediately.",
+  status: "published",
 });
 ```
 
